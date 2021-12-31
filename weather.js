@@ -73,5 +73,35 @@ function updateSnowFall() {
   ctx.clearRect(0, 0, w, h);
   drawSnowFlakes(canvas, ctx);
   moveSnowFlakes(w, h);
-  requestAnimationFrame(updateSnowFall);
 };
+
+function createRainDrops() {
+  
+}
+
+function updateRainFall() {
+
+}
+
+function createWeather(weather) {
+  switch (weather) {
+    case 'snow':
+      updateSnowFall();
+      break;
+    case 'rain':
+      updateRainFall();
+      break;
+    }
+}
+
+function updateWeather(weather) {
+  switch (weather) {
+  case 'snow':
+    createSnowFlakes();
+    break;
+  case 'rain':
+    createRainDrops();
+    break;
+  }
+  requestAnimationFrame(updateWeather(weather));
+}
