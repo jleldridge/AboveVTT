@@ -1513,6 +1513,12 @@ function init_ui() {
 	fog.css("position", "absolute");
 	fog.css("z-index", "20");
 
+  weather_overlay = $("<canvas id='weather_overlay'></canvas>");
+  weather_overlay.css("top", "0");
+	weather_overlay.css("left", "0");
+	weather_overlay.css("position", "absolute");
+	weather_overlay.css("z-index", "21");
+
 
 	fog.dblclick(function(e) {
 		e.preventDefault();
@@ -1563,6 +1569,7 @@ function init_ui() {
 	VTT.append(tokens);
 	VTT.append(background);
 	VTT.append(fog);
+  VTT.append(weather_overlay);
 	VTT.append(grid);
 	VTT.append(draw_overlay);
 

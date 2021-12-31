@@ -388,8 +388,15 @@ function reset_canvas() {
 
 	$('#draw_overlay').get(0).width = $("#scene_map").width();
 	$('#draw_overlay').get(0).height = $("#scene_map").height();
+
+  $('#weather_overlay').get(0).width = $("#scene_map").width();
+  $('#weather_overlay').get(0).height = $("#scene_map").height();
 	var canvas = document.getElementById("fog_overlay");
 	var ctx = canvas.getContext("2d");
+
+
+  createSnowFlakes();
+  requestAnimationFrame(updateSnowFall);
 
 	if (!window.FOG_OF_WAR) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
