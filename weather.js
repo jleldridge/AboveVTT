@@ -23,7 +23,7 @@ function createSnowFlakes() {
   }
 };
 
-function drawSnowFlakes(canvas, ctx) {
+function drawSnowFlakes(ctx) {
   for (var i = 0; i < particlesArray.length; i++) {
     var gradient = ctx.createRadialGradient(
       particlesArray[i].x,
@@ -65,31 +65,58 @@ function moveSnowFlakes(w, h) {
   }
 };
 
-function updateSnowFall() {
+function updateSnowFlakes() {
   let canvas = $("#weather_overlay").get(0);
   let ctx = canvas.getContext("2d");
   let w = canvas.width;
   let h = canvas.height;
   ctx.clearRect(0, 0, w, h);
-  drawSnowFlakes(canvas, ctx);
+  drawSnowFlakes(ctx);
   moveSnowFlakes(w, h);
 };
 
 function createRainDrops() {
+  let canvas = $("#weather_overlay").get(0);
+  let w = canvas.width;
+  let h = canvas.height;
+  particlesArray = [];
+
+  for (var i = 0; i < particlesOnScreen; i++) {
+    particlesArray.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      opacity: Math.random(),
+      speedX: random(-11, 11),
+      speedY: random(7, 15),
+      radius: random(0.5, 4.2),
+    })
+  }
+}
+
+function updateRainDrops() {
+  let canvas = $("#weather_overlay").get(0);
+  let ctx = canvas.getContext("2d");
+  let w = canvas.width;
+  let h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+  drawRainDrops(ctx);
+  moveRainDrops(w, h);
+}
+
+function drawRainDrops(ctx) {
   
 }
 
-function updateRainFall() {
-
+function moveRainDrops(w, h) {
 }
 
 function createWeather(weather) {
   switch (weather) {
     case 'snow':
-      updateSnowFall();
+      createSnowFlakes();
       break;
     case 'rain':
-      updateRainFall();
+      createRainDrops();
       break;
     }
 }
@@ -97,11 +124,11 @@ function createWeather(weather) {
 function updateWeather(weather) {
   switch (weather) {
   case 'snow':
-    createSnowFlakes();
+    updateSnowFlakes();
     break;
   case 'rain':
-    createRainDrops();
+    updateRainDrops();
     break;
   }
-  requestAnimationFrame(updateWeather(weather));
+  requestAnimationFrame(() => updateWeather(weather));
 }

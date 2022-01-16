@@ -395,8 +395,8 @@ function reset_canvas() {
 	var ctx = canvas.getContext("2d");
 
 
-  createWeather();
-  requestAnimationFrame(updateWeather);
+  createWeather('snow');
+  requestAnimationFrame(() => updateWeather('snow'));
 
 	if (!window.FOG_OF_WAR) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);

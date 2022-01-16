@@ -48,7 +48,7 @@
 	"Journal.js",
 	"DnDBeyond/DDBCharacterData.js",
 	"SidebarPanel.js",
-  "snow.js",
+  "weather.js",
 	"assets/*"
 	]
 }
