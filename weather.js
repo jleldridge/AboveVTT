@@ -82,13 +82,15 @@ function createRainDrops() {
   particlesArray = [];
 
   for (var i = 0; i < particlesOnScreen; i++) {
+    const originalRadius = random(3, 6);
     particlesArray.push({
       x: Math.random() * w,
       y: Math.random() * h,
       opacity: Math.random(),
       speedX: 5,
       speedY: random(7, 15),
-      radius: random(3, 6),
+      radius: originalRadius,
+      originalRadius
     })
   }
 }
@@ -147,10 +149,12 @@ function moveRainDrops(w, h) {
   for (var i = 0; i < particlesArray.length; i++) {
     particlesArray[i].x += particlesArray[i].speedX;
     particlesArray[i].y += particlesArray[i].speedY;
+    particlesArray[i].radius = Math.max(0, particlesArray[i].radius - 0.1);
 
     if (particlesArray[i].y > h) {
       particlesArray[i].x = Math.random() * w * 1.5;
       particlesArray[i].y = -50;
+      particlesArray[i].radius = particlesArray[i].originalRadius;
     }
   }
 }
